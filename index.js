@@ -10,4 +10,4 @@ app.set('view engine', 'ejs');
 app.use('/comments', commentsRouter);
 
 
-app.listen(port);
+app.listen(PORT);
