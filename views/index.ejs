@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Js Comments App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="/">COMMENTS</a>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <% if (locals.comments.length) { %>
+            <div id="counter">
+                <strong><%= ((totalPages === page) ? totalRecords : comments.length * page) %> of <%= totalRecords %> comments</strong>
+            </div>
+            <% comments.forEach((comment) => { %>
+                <div class="comment">
+                    <%= comment.body %>
+                    <p class="meta">
+                        <span>
+                            <i class="fa-solid fa-user"></i> <%= comment.username %>
+                        </span>
+                        <span>
+                            <i class="fa-solid fa-calendar-days"></i> <%= comment.created_at.split('T')[0] %>
+                        </span>
+                    </p>
+                </div>
+            <%}); %>
+        <% } %>
+        <div id="pagination">
+            <% if (page > 1) { %>
+                <a href="?page=<%= page - 1 %>">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+            <% } %>
+            <% if (page < totalPages) { %>
+                <a href="?page=<%= page + 1 %>">
+
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
