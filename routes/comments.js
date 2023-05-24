@@ -24,8 +24,8 @@ router.get('/', async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 3;
     const skip = (page - 1) * limit;
-    const data = comments.slice(skip, skip + limit);
-    const totalPages = Math.ceil(comments.length / limit);
+    const data = (comments.length) ? comments.slice(skip, skip + limit) : comments;
+    const totalPages = (comments.length) ? Math.ceil(comments.length / limit) : 0;
 
     res.render('index', {comments: data, page, totalPages, totalRecords: comments.length});
 });
