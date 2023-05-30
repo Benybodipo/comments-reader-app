@@ -5,7 +5,7 @@ const router = express.Router();
 
 const fetchComments = async (req, res, next) => {
     try {
-        const url = 'http://127.0.0.1:8080/api/comments';
+        const url = 'http://borolong.hyperphp.com/api/comments';
         const response = await axios.get(url);
         
         return response.data;
@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     
     try {
-        const url = `http://127.0.0.1:8080/api/comments/${req.params.id}`;
+        const url = `http://borolong.hyperphp.com/api/comments/${req.params.id}`;
         const response = await axios.get(url);
         
         const comment = response.data;
