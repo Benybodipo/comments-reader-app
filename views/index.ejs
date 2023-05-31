@@ -20,7 +20,7 @@
         </nav>
     </header>
     <main class="container">
-        <% if (locals.comments.length) { %>
+        <% if (locals.comments.length && (typeof locals.comments === "object")) { %>
             <div id="counter">
                 <strong><%= ((totalPages === page) ? totalRecords : comments.length * page) %> of <%= totalRecords %> comments</strong>
             </div>
@@ -37,20 +37,22 @@
                     </p>
                 </div>
             <%}); %>
+            <div id="pagination">
+                <% if (page > 1) { %>
+                    <a href="?page=<%= page - 1 %>">
+                        <i class="fa-solid fa-angles-left"></i>
+                    </a>
+                <% } %>
+                <% if (page < totalPages) { %>
+                    <a href="?page=<%= page + 1 %>">
+    
+                        <i class="fa-solid fa-angles-right"></i>
+                    </a>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h4>No comments found...</h4>
         <% } %>
-        <div id="pagination">
-            <% if (page > 1) { %>
-                <a href="?page=<%= page - 1 %>">
-                    <i class="fa-solid fa-angles-left"></i>
-                </a>
-            <% } %>
-            <% if (page < totalPages) { %>
-                <a href="?page=<%= page + 1 %>">
-
-                    <i class="fa-solid fa-angles-right"></i>
-                </a>
-            <% } %>
-        </div>
     </main>
 </body>
 </html>
